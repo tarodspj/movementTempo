@@ -40,8 +40,10 @@ var gulp = require('gulp'),
       minifiedJs: 'index.js'
     },
     orderToJs = [
-      Ruta.src + Ruta.js + 'libs/jquery.custom.js'
-      Ruta.src + Ruta.js + 'libs/jquery.backstretch.js'
+      Ruta.src + Ruta.js + 'libs/jquery.custom.js',
+      Ruta.src + Ruta.js + 'libs/jquery.backstretch.js',
+      Ruta.src + Ruta.js + 'index.js'
+
     ],
     destino = Ruta.build,
     conditionBuild = false;
@@ -105,7 +107,7 @@ gulp.task('concat-scripts', function() {
   //return gulp.src(Ruta.src + Ruta.js + '*.js')
   return gulp.src(orderToJs)
     .pipe(concat(NameFile.minifiedJs))
-    .pipe(gulp.dest(destino + Ruta.js ));
+    .pipe(gulp.dest(destino + Ruta.js));
 });
 
 // gulp.task('minify-js', function(){
