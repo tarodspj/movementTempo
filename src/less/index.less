@@ -1,6 +1,8 @@
 // out: ../../www/css/index.css, sourcemap: true, compress: true, autoprefixer: true, strictMath: false
 @import "globals.less";
 @bgColor1: #787777;
+
+@textColor: #fff;
 /*
  * Licensed to the Apache Software Foundation (ASF) under one
  * or more contributor license agreements.  See the NOTICE file
@@ -49,15 +51,6 @@ body {
     }
 }
 
-h1 {
-    font-size:24px;
-    font-weight:normal;
-    margin:0px;
-    overflow:visible;
-    padding:0px;
-    text-align:center;
-}
-
 .event {
     border-radius:4px;
     -webkit-border-radius:4px;
@@ -67,9 +60,44 @@ h1 {
     padding:2px 0px;
 }
 
-.event.listening {
-    background-color:#333333;
-    display:block;
+.listening {
+    .size;
+    .absoluteTopLeft;
+    display: flex;
+    flex-direction: column;
+    flex-wrap: nowrap;
+    justify-content: center;
+    align-content: center;
+    align-items: center;
+    background-color: black;
+    color: @textColor;
+}
+
+.messageDevice {
+  line-height: 90px;
+  font-size: 30px;
+}
+
+.wait {
+  .absoluteBottomLeft(10%,0);
+  .size(100%,10%);
+  overflow: hidden;
+  text-align: center;
+  z-index: 10;
+  li {
+    display: inline-block;
+    padding: 3%;
+
+    &:nth-child(1) {
+      // animation-delay: 30ms;
+    }
+    &:nth-child(2) {
+      animation: animationTextWait 800ms ease 0s infinite;
+    }
+    &:nth-child(3) {
+      // animation-delay: 1030ms;
+    }
+  }
 }
 
 .event.received {
@@ -77,11 +105,7 @@ h1 {
     display:none;
 }
 
-@keyframes fade {
-    from { opacity: 1.0; }
-    50% { opacity: 0.4; }
-    to { opacity: 1.0; }
-}
+
 
 @-webkit-keyframes fade {
     from { opacity: 1.0; }
@@ -90,6 +114,6 @@ h1 {
 }
 
 .blink {
-    animation:fade 3000ms infinite;
-    -webkit-animation:fade 3000ms infinite;
+    // animation:fade 3000ms infinite;
+    // -webkit-animation:fade 3000ms infinite;
 }

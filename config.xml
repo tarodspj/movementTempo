@@ -4,6 +4,7 @@
     <description>
         First app - Trying to code a metronome and countdown
     </description>
+
     <author email="r.regueiro.santiago@gmail.com" href="http://www.robertoregueiro.com">
         Roberto Regueiro Esepejota
     </author>
@@ -16,6 +17,7 @@
     <allow-intent href="sms:*" />
     <allow-intent href="mailto:*" />
     <allow-intent href="geo:*" />
+
     <platform name="android">
         <allow-intent href="market:*" />
     </platform>

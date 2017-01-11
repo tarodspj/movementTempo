@@ -73,7 +73,7 @@ gulp.task('start', ['watch']);
 
 
 //START: styles ----
-var autoprefix = new LessAutoprefix({ browsers: ['last 2 versions'] }),
+var autoprefix = new LessAutoprefix({ browsers: ['last 4 versions'] }),
     cleanCSSPlugin = new LessPluginCleanCSS({advanced: true});
 
 gulp.task('less', function(){
