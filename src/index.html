@@ -2,6 +2,7 @@
 <!--
 cd /Users/robertoregueiro/http/movementTempo/
 cordova run  android
+cordova run android --6aca4c2f
 adb install -r /Users/robertoregueiro/http/movementTempo/platforms/android/build/outputs/apk/android-debug.apk
 
 
@@ -42,17 +43,12 @@ adb install -r /Users/robertoregueiro/http/movementTempo/platforms/android/build
     </head>
     <body>
         <div class="app">
-          <div class="listening">
-            <strong class="messageDevice">Connecting to Device</strong>
-            <ul class="wait">
-              <li>·</li>
-              <li>·</li>
-              <li>·</li>
-            </ul>
-          </div>
-
           <div id="deviceready">
-            <p class="event received">gulp?</p>
+            <!-- include "includes/html/listening.html" -->
+            <div class="received">
+              <h1 id="timer"></h1>
+            </div><!--/received-->
+
           </div>
         </div>
         <script type="text/javascript" src="cordova.js"></script>
