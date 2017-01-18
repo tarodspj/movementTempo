@@ -55,18 +55,6 @@ body {
     width: 100%;
 }
 
-/* Portrait layout (default) */
-.app {
-
-}
-
-/* Landscape layout (with min-width) */
-@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
-    .app {
-
-    }
-}
-
 .listening {
     .size;
     .absoluteTopLeft;
@@ -151,7 +139,7 @@ body {
 }
 
 .tiempo {
-  margin-bottom: 90px;
+  margin-bottom: 5vh;
 }
 
 .timeContainer {
@@ -174,6 +162,7 @@ body {
   order: 0;
   flex: 0 1 auto;
   align-self: auto;
+  text-align: right;
 }
 .separacion {
   order: 0;
@@ -184,6 +173,7 @@ body {
   order: 0;
   flex: 0 1 auto;
   align-self: auto;
+  text-align: left;
 }
 
 .botonEstado {
@@ -214,4 +204,8 @@ body {
       content: 'STOP';
     }
   }
+}
+
+@media screen and (min-aspect-ratio: 1/1) and (min-width:400px) {
+  @import "mediaPortrait.less";
 }

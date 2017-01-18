@@ -9361,40 +9361,27 @@ return jQuery;
   }());
 
 }(jQuery, window));
-var ping = new Audio("/android_asset/www/audio/Hi-Bongo.wav"),
-    endExercise = new Audio("/android_asset/www/audio/end.mp3");
+var pingSound = new Audio("/android_asset/www/audio/ping.wav"),
+    lastSecondsSound = new Audio("/android_asset/www/audio/lastSeconds.wav"),
+    endExerciseSound = new Audio("/android_asset/www/audio/end.wav");
 
 var $wrapper, timer, continua = true;
 var seriesInicial, minutosInicial, segundosInicial;
 var series, minutos, segundos;
+var lastSeconds = 4;
 
-// function goToFullScreen() {
-//   var docelem = document.documentElement;
-//
-//       if (docelem.requestFullscreen) {
-//           docelem.requestFullscreen();
-//       }
-//       else if (docelem.mozRequestFullScreen) {
-//           docelem.mozRequestFullScreen();
-//       }
-//       else if (docelem.webkitRequestFullScreen) {
-//           docelem.webkitRequestFullScreen();
-//       }
-//       else if (docelem.msRequestFullscreen) {
-//           docelem.msRequestFullscreen();
-//       }
-// }
-function checkSeconds(elemento) {
-  var segundosSucios = parseInt(elemento.val(), 10),
-      segundosLimpios = false;
-  if (segundosSucios < 9) {
-    segundosLimpios = '0' + segundosSucios;
+
+function checkTimeFormat(elemento) {
+  var timepoSucios = parseInt(elemento.val(), 10),
+      tiempoLimpios = false;
+  if (timepoSucios < 9) {
+    tiempoLimpios = '0' + timepoSucios;
   }
-  if (segundosSucios > 59) {
-    segundosLimpios = 59;
+  if (timepoSucios > 59) {
+    tiempoLimpios = 59;
   }
-  if(segundosLimpios) {
-    elemento.val(segundosLimpios);
+  if(tiempoLimpios) {
+    elemento.val(tiempoLimpios);
   }
 }
 
@@ -9403,24 +9390,47 @@ function checkBeforeStart() {
   $input.blur(); //quitamos el foco de los inputs para que se vea bonito
 }
 
+function toggleButtonState(elemento) {
+  if(elemento.hasClass('play')){
+    elemento.removeClass('play');
+    elemento.addClass('stop');
+
+    $('input').attr('readonly', 'readonly');
+    startTrainning();
+    updateTime();
+  }
+  else {
+    stopCountDown();
+    elemento.addClass('play');
+    elemento.removeClass('stop');
+  }
+}
+
 function startTrainning() {
   $wrapper = $('#wrapper');
-  seriesInicial = parseInt($wrapper.find('.numero_series').val(), 10);
+  //seriesInicial = parseInt($wrapper.find('.numero_series').val(), 10);
   minutosInicial = parseInt($wrapper.find('.minutos').val(), 10);
   segundosInicial = parseInt($wrapper.find('.segundos').val(), 10);
   minutos = minutosInicial;
   segundos = segundosInicial;
-  series = seriesInicial;
-}
-
-function restartTime() {
-  $wrapper.find('.minutos').val(minutosInicial);
-  $wrapper.find('.segundos').val(segundosInicial);
+  //series = seriesInicial;
 }
 
 function restartTrainning() {
-  $wrapper.find('.numero_series').val(seriesInicial);
+  continua = true;
+  //$wrapper.find('.numero_series').val(seriesInicial);
   restartTime();
+}
+
+function trainningEnded() {
+  toggleButtonState($('#botonEstado'));
+  restartTrainning();
+}
+
+function restartTime() {
+  console.log(segundosInicial);
+  $wrapper.find('.minutos').val(minutosInicial);
+  $wrapper.find('.segundos').val(segundosInicial);
 }
 
 function updateSeconds() {
@@ -9438,7 +9448,6 @@ function updateMinutes() {
 }
 
 function updateTime() {
-
   segundos = parseInt(segundos) - 1;
 
   if (segundos < 0) {
@@ -9454,14 +9463,23 @@ function updateTime() {
 
   if(continua) {
     updateSeconds();
-    ping.play();
+
+    if(minutos == '00' && segundos <= lastSeconds) {
+      console.log('last: ' + segundos);
+      lastSecondsSound.play();
+    } else {
+      console.log(minutos + ' _ ' + segundos);
+      pingSound.play();
+    }
+
     timer = setTimeout(updateTime, 1000);
   } else {
     clearTimeout(timer);
-    endExercise.play();
+    endExerciseSound.play();
   }
 
 } //updateTime
+
 function stopCountDown() {
   clearTimeout(timer);
   startTrainning();
@@ -9471,25 +9489,17 @@ function stopCountDown() {
 function initializeApp() {
   $('#botonEstado').on('click', function(){
     var $this = $(this);
-    if($this.hasClass('play')){
-      $this.removeClass('play');
-      $this.addClass('stop');
-
-      $('input').attr('readonly', 'readonly');
-      startTrainning();
-      updateTime();
-    }
-    else {
-      stopCountDown();
-      $this.addClass('play');
-      $this.removeClass('stop');
-    }
+    toggleButtonState($this);
   });
-  $('.segundos').on('blur', function(){
+
+  $('.numero_tiempo').on('blur', function(){
     var $this = $(this);
-    checkSeconds($this);
+    checkTimeFormat($this);
   });
-
+  endExerciseSound.addEventListener('ended', function(){
+    console.log('fin');
+    trainningEnded();
+  });
 } //initializeApp
 
 var app = {
