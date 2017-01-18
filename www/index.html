@@ -37,7 +37,7 @@ adb install -r /Users/robertoregueiro/http/movementTempo/platforms/android/build
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, width=device-width,height=device-height,target-densitydpi=device-dpi, minimal-ui">
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>Movement Tempo</title>
     </head>
@@ -67,11 +67,12 @@ adb install -r /Users/robertoregueiro/http/movementTempo/platforms/android/build
                     Tiempo
                   </label>
                   <div class="timeContainer">
-                    <input type="number" class="minutos numero_tiempo numero" value="01">
+                    <input type="number" class="minutos numero_tiempo numero" value="01" maxlength="2">
                     <span class="separacion numero_tiempo">:</span>
                     <input type="number" class="segundos numero_tiempo numero" value="08" maxlength="2">
                   </div><!--/timeContainer-->
                 </div><!--/tiempo-->
+
                 <div id="botonEstado" class="play botonEstado"></div><!--/botonEstado -->
               </div><!--/wrapper-->
             </div><!--/received-->
