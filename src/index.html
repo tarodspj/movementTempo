@@ -2,6 +2,7 @@
 <!--
 cd /Users/robertoregueiro/http/movementTempo/
 cordova run  android
+cordova run android --6aca4c2f
 adb install -r /Users/robertoregueiro/http/movementTempo/platforms/android/build/outputs/apk/android-debug.apk
 
 
@@ -36,25 +37,35 @@ adb install -r /Users/robertoregueiro/http/movementTempo/platforms/android/build
         <meta http-equiv="Content-Security-Policy" content="default-src 'self' data: gap: https://ssl.gstatic.com 'unsafe-eval'; style-src 'self' 'unsafe-inline'; media-src *; img-src 'self' data: content:;">
         <meta name="format-detection" content="telephone=no">
         <meta name="msapplication-tap-highlight" content="no">
-        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width">
+        <meta name="viewport" content="user-scalable=no, initial-scale=1, maximum-scale=1, minimum-scale=1, width=device-width, width=device-width,height=device-height,target-densitydpi=device-dpi, minimal-ui">
         <link rel="stylesheet" type="text/css" href="css/index.css">
         <title>Movement Tempo</title>
     </head>
     <body>
         <div class="app">
-          <div class="listening">
-            <strong class="messageDevice">Connecting to Device</strong>
-            <ul class="wait">
-              <li>·</li>
-              <li>·</li>
-              <li>·</li>
-            </ul>
-          </div>
-
           <div id="deviceready">
-            <p class="event received">gulp?</p>
-          </div>
-        </div>
+            <!-- include "includes/html/listening.html" -->
+            <div class="received">
+              <div class="wrapper" id="wrapper">
+
+                <div class="groupTimer tiempo">
+                  <label for="tiempo_minutos" class="titulo_tiempo titulo">
+                    Tiempo
+                  </label>
+                  <div class="timeContainer">
+                    <input type="number" class="minutos numero_tiempo numero" value="00" maxlength="2"/>
+                    <span class="separacion numero_tiempo">:</span>
+                    <input type="number" class="segundos numero_tiempo numero" value="08" maxlength="2"/>
+                  </div><!--/timeContainer-->
+                </div><!--/tiempo-->
+
+                <div id="botonEstado" class="play botonEstado"></div><!--/botonEstado -->
+
+              </div><!--/wrapper-->
+            </div><!--/received-->
+
+          </div><!--/deviceready-->
+        </div><!--/app-->
         <script type="text/javascript" src="cordova.js"></script>
         <script type="text/javascript" src="js/index.js"></script>
     </body>
