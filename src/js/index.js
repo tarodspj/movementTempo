@@ -68,6 +68,7 @@ function restartTime() {
   console.log(segundosInicial);
   $wrapper.find('.minutos').val(minutosInicial);
   $wrapper.find('.segundos').val(segundosInicial);
+  checkBeforeStart();
 }
 
 function updateSeconds() {
@@ -119,7 +120,8 @@ function updateTime() {
 
 function stopCountDown() {
   clearTimeout(timer);
-  startTrainning();
+  //startTrainning();
+  restartTime();
   $('input').removeAttr('readonly');
 }
 
