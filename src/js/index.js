@@ -2,145 +2,87 @@ var pingSound = new Audio("/android_asset/www/audio/ping.wav"),
     lastSecondsSound = new Audio("/android_asset/www/audio/lastSeconds.wav"),
     endExerciseSound = new Audio("/android_asset/www/audio/end.wav");
 
-var $wrapper, timer, continua = true;
-var seriesInicial, minutosInicial, segundosInicial;
-var series, minutos, segundos;
-var lastSeconds = 4;
+var entrenamiento, descanso;
+var tiempoUnidad = 1000; //1000ms = 1s
 
+function Timer() {
+  //propiedades
+  //variables privada
+  var tiempo = 0; //tiempo en milisegundos
+  var intervalo;
+  var offset;
 
-function checkTimeFormat(elemento) {
-  var timepoSucios = parseInt(elemento.val(), 10),
-      tiempoLimpios = false;
-  if (timepoSucios < 9) {
-    tiempoLimpios = '0' + timepoSucios;
-  }
-  if (timepoSucios > 59) {
-    tiempoLimpios = 59;
-  }
-  if(tiempoLimpios) {
-    elemento.val(tiempoLimpios);
-  }
-}
-
-function checkBeforeStart() {
-  var $input = $('input');
-  $input.blur(); //quitamos el foco de los inputs para que se vea bonito
-}
-
-function toggleButtonState(elemento) {
-  if(elemento.hasClass('play')){
-    elemento.removeClass('play');
-    elemento.addClass('stop');
-
-    $('input').attr('readonly', 'readonly');
-    startTrainning();
-    updateTime();
-  }
-  else {
-    stopCountDown();
-    elemento.addClass('play');
-    elemento.removeClass('stop');
-  }
-}
-
-function startTrainning() {
-  $wrapper = $('#wrapper');
-  //seriesInicial = parseInt($wrapper.find('.numero_series').val(), 10);
-  minutosInicial = parseInt($wrapper.find('.minutos').val(), 10);
-  segundosInicial = parseInt($wrapper.find('.segundos').val(), 10);
-  minutos = minutosInicial;
-  segundos = segundosInicial;
-  //series = seriesInicial;
-}
-
-function restartTrainning() {
-  continua = true;
-  //$wrapper.find('.numero_series').val(seriesInicial);
-  restartTime();
-}
-
-function trainningEnded() {
-  toggleButtonState($('#botonEstado'));
-  restartTrainning();
-}
-
-function restartTime() {
-  console.log(segundosInicial);
-  $wrapper.find('.minutos').val(minutosInicial);
-  $wrapper.find('.segundos').val(segundosInicial);
-  checkBeforeStart();
-}
-
-function updateSeconds() {
-  if(segundos <= 9) {
-    segundos = '0' + segundos;
-  }
-  $wrapper.find('.segundos').val(segundos);
-}
-
-function updateMinutes() {
-  if(minutos <= 9) {
-    minutos = '0' + minutos;
-  }
-  $wrapper.find('.minutos').val(minutos);
-}
-
-function updateTime() {
-  segundos = parseInt(segundos) - 1;
-
-  if (segundos < 0) {
-      segundos = 59;
-      if (minutos >= 1){
-        minutos = parseInt(minutos) - 1;
-        updateMinutes();
-      }
-      else {
-        continua = false;
-      }
+  //funciones privadas
+  function actualiza() {
+    var tiempoRecibido = delta();
+    tiempo = tiempoRecibido + tiempo;
+    console.log(parseInt(tiempo / tiempoUnidad));
   }
 
-  if(continua) {
-    updateSeconds();
+  function delta() {
+    var ahora = Date.now();
+    var tiempoTanscurrido = offset - tiempo;
+    offset = ahora;
 
-    if(minutos == '00' && segundos <= lastSeconds) {
-      console.log('last: ' + segundos);
-      lastSecondsSound.play();
-    } else {
-      console.log(minutos + ' _ ' + segundos);
-      pingSound.play();
+    return tiempoTanscurrido;
+  }
+
+  function formateadorTiempo() {}
+
+//funciones y variables publicas
+  //esta activo o no
+  this.isOn = false;
+
+  //creamos funciones
+  this.Start = function(){
+    if(!this.isOn) {
+      intervalo = setInterval(actualiza, tiempoUnidad);
+      offset = Date.now();
+      this.isOn = true;
     }
+  };
+  this.Stop = function(){
+    if(this.isOn) {
+      clearInterval(intervalo);
+      interval = null;
 
-    timer = setTimeout(updateTime, 1000);
-  } else {
-    clearTimeout(timer);
-    endExerciseSound.play();
-  }
+      this.isOn = false;
+    }
+  };
+  this.Reset = function(){
+  };
 
-} //updateTime
 
-function stopCountDown() {
-  clearTimeout(timer);
-  //startTrainning();
-  restartTime();
-  $('input').removeAttr('readonly');
+  // updateReloj :function() {
+  //
+  // },
+  // giveTime: function(){
+  //
+  // },
+  // setTime: function(){
+  //
+  // },
+  // restartTime: function(){
+  //
+  // },
+  // pauseTime: function(){
+  //
+  // }
+}
+
+function startTrainning(){
+  entrenamiento.Start();
+
 }
 
 function initializeApp() {
-  $('#botonEstado').on('click', function(){
-    var $this = $(this);
-    toggleButtonState($this);
-  });
+  entrenamiento = new Timer();
+  descanso = new Timer();
 
-  $('.numero_tiempo').on('blur', function(){
-    var $this = $(this);
-    checkTimeFormat($this);
+  $('#toggleButton').on('click',function(){
+    startTrainning();
   });
-  endExerciseSound.addEventListener('ended', function(){
-    console.log('fin');
-    trainningEnded();
-  });
-} //initializeApp
-
+}
 var app = {
     // Application Constructor
     initialize: function() {
