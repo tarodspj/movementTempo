@@ -9371,15 +9371,21 @@ var tiempoUnidad = 1000; //1000ms = 1s
 function Timer() {
   //propiedades
   //variables privada
-  var tiempo = 0; //tiempo en milisegundos
-  var intervalo;
-  var offset;
+  var tiempo = 0, //tiempo en milisegundos
+      intervalo,
+      offset;
 
   //funciones privadas
   function actualiza() {
-    var tiempoRecibido = delta();
+    var tiempoRecibido,
+        tiempoFormateao;
+
+    tiempoRecibido = delta();
     tiempo = tiempoRecibido + tiempo;
-    console.log(parseInt(tiempo / tiempoUnidad));
+
+    tiempoFormateao = formateadorTiempo(tiempo);
+
+    console.log(tiempoFormateao);
   }
 
   function delta() {
@@ -9390,7 +9396,21 @@ function Timer() {
     return tiempoTanscurrido;
   }
 
-  function formateadorTiempo() {}
+  function formateadorTiempo(tiempoEnMilisegundos) {
+    var tiempo = new Date(tiempoEnMilisegundos);
+
+    var minutos = tiempo.getMinutes().toString(),
+        segundos = tiempo.getSeconds().toString();
+
+    if(minutos.length < 2) {
+      minutos = '0' + minutos;
+    }
+    if(segundos.length < 2) {
+      segundos = '0' + segundos;
+    }
+
+    return minutos + ':' + segundos;
+  }
 
 //funciones y variables publicas
   //esta activo o no
