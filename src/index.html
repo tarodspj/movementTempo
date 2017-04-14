@@ -3,7 +3,7 @@
 cd /Users/robertoregueiro/http/movementTempo/
 cordova run  android
 cordova run android --6aca4c2f
-adb install -r /Users/robertoregueiro/http/movementTempo/platforms/android/build/outputs/apk/android-debug.apk
+adb install -r 	/Applications/MAMP/htdocs/movementTempo/platforms/android/build/outputs/apk/android-debug.apk
 
 
     Licensed to the Apache Software Foundation (ASF) under one
@@ -50,7 +50,7 @@ adb install -r /Users/robertoregueiro/http/movementTempo/platforms/android/build
 
                 <div class="groupTimer tiempo">
                   <label for="tiempo_minutos" class="titulo_tiempo titulo">
-                    Tiempo
+                    Time
                   </label>
                   <div class="timeContainer">
                     <input type="number" class="minutos numero_tiempo numero" value="00" maxlength="2"/>
@@ -59,7 +59,12 @@ adb install -r /Users/robertoregueiro/http/movementTempo/platforms/android/build
                   </div><!--/timeContainer-->
                 </div><!--/tiempo-->
 
-                <div id="botonEstado" class="play botonEstado"></div><!--/botonEstado -->
+                <div id="botonEstado" class="play botonEstado">
+                  <img src="/src/img/pause-play-button.svg" />
+                </div><!--/botonEstado -->
+                <div id="botonPause" class="pause botonEstado">
+                  <img src="/src/img/pause-play-button.svg" />
+                </div><!--/botonEstado -->
 
               </div><!--/wrapper-->
             </div><!--/received-->

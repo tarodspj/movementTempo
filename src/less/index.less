@@ -177,13 +177,28 @@ body {
 }
 
 .botonEstado {
-  display: inline-block;
+  display: block;
   position: relative;
   margin: 0 auto;
+  text-align: center;
   width: 80%;
-  height: 60px;
+  height: 100px;
+  &.play {
+    path {
+      .stop1Img {
+        fill-opacity: 0;
+      }
+      .stop2Img {
+        fill-opacity: 0;
+      }
+      .stop3Img {
+        fill-opacity: 0;
+      }
+    }
+  }
   //font-size: 40px;
   //line-height: 60px;
+  /*
   text-align: center;
   transition: all .4s ease;
   &::after {
@@ -203,6 +218,11 @@ body {
     &::after {
       content: 'STOP';
     }
+  }
+  */
+  svg {
+    width: auto;
+    height: 100%;
   }
 }
 
