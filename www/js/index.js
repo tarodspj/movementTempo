@@ -9434,10 +9434,13 @@ function toggleButtonState(elemento) {
 
 function startTrainning() {
   $wrapper = $('#wrapper');
-  minutosInicial = parseInt($wrapper.find('.minutos').val(), 10);
-  segundosInicial = parseInt($wrapper.find('.segundos').val(), 10);
-  minutos = minutosInicial;
-  segundos = segundosInicial;
+  // if($('#button1').hasClass('onlyOne')){
+  //   console.log('startting biatch');
+    minutosInicial = parseInt($wrapper.find('.minutos').val(), 10);
+    segundosInicial = parseInt($wrapper.find('.segundos').val(), 10);
+    minutos = minutosInicial;
+    segundos = segundosInicial;
+  //}
 }
 
 function restartTrainning() {
@@ -9489,10 +9492,10 @@ function updateTime() {
     updateSeconds();
 
     if(minutos == '00' && segundos <= lastSeconds) {
-      console.log('last: ' + segundos);
+      //console.log('last: ' + segundos);
       lastSecondsSound.play();
     } else {
-      console.log(minutos + ' _ ' + segundos);
+      //console.log(minutos + ' _ ' + segundos);
       pingSound.play();
     }
 
