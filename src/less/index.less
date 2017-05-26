@@ -183,20 +183,23 @@ body {
   width: 100%;
   height: 100px;
 }
-
+.buttonsTimer {
+  .size(200%,100px);
+  .absoluteTopLeft;
+}
 .botonEstado {
   display: inline-block;
   position: relative;
   text-align: center;
   float: left;
-  width: 50%;
+  width: 25%;
   height: 100%;
   background-position: center center;
   background-color: transparent;
   background-repeat: no-repeat;
-  transition: .4s width ease;
+  transition: .6s width ease;
   &.onlyOne {
-    width: 100%;
+    width: 50%;
   }
   &.play {
     background-image: url('../img/play-button.svg');
