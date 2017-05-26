@@ -66,53 +66,14 @@ adb install -r 	/Applications/MAMP/htdocs/movementTempo/platforms/android/build/
                     <input type="number" class="segundos numero_tiempo numero" value="08" maxlength="2">
                   </div><!--/timeContainer-->
                 </div><!--/tiempo-->
-
-                <div id="botonEstado" class="play botonEstado">
-                  <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" class="botones" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="-99 309.1 154 210" style="enable-background:new -99 309.1 154 210;" xml:space="preserve">
-	<g class="playStopImg">
-		<path class="stop3Img" d="M-7.1,409.8L42.4,487c8.5,13.3,1.5,24.1-15.6,24.1H-72c-17.2,0-24.2-10.8-15.6-24.1l49.5-77.2
-			C-29.5,396.5-15.7,396.5-7.1,409.8z"/>
-		<path class="stop2Img" d="M-38.1,417.3l-49.5-77.2c-8.5-13.3-1.5-24.1,15.6-24.1h98.8c17.2,0,24.2,10.8,15.6,24.1l-49.5,77.2
-			C-15.7,430.6-29.5,430.6-38.1,417.3z"/>
-		<path class="stop1Img" d="M-81,392l99.4-69.8c17.1-12,31-2.2,31.1,21.9L49.8,483c0,24.1-13.8,34-31,22l-99.7-69.5
-			C-98.1,423.5-98.1,404.1-81,392z"/>
-		<path class="playImg" d="M36.9,434.8l-99.6,69.7c-17.1,12-31,2.2-31-22V343.6c0-24.1,13.9-34,31-22l99.6,69.7
-			C54,403.3,54,422.8,36.9,434.8z"/>
-	</g>
-	<g class="pauseImg">
-		<path d="M50.2,471.1c0,21.2-10.7,38.5-24,38.5c-13.2,0-24-17.2-24-38.5V354.5c0-21.2,10.7-38.5,24-38.5c13.2,0,24,17.2,24,38.5
-			V471.1z"/>
-		<path d="M-45.3,471.1c0,21.2-10.7,38.5-24,38.5c-13.2,0-24-17.2-24-38.5V354.5c0-21.2,10.7-38.5,24-38.5c13.2,0,24,17.2,24,38.5
-			V471.1z"/>
-	</g>
-</svg>
-
-                </div><!--/botonEstado -->
-                <div id="botonPause" class="pause botonEstado">
-                  <?xml version="1.0" encoding="utf-8"?>
-<!-- Generator: Adobe Illustrator 19.0.0, SVG Export Plug-In . SVG Version: 6.00 Build 0)  -->
-<svg version="1.1" class="botones" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewbox="-99 309.1 154 210" style="enable-background:new -99 309.1 154 210;" xml:space="preserve">
-	<g class="playStopImg">
-		<path class="stop3Img" d="M-7.1,409.8L42.4,487c8.5,13.3,1.5,24.1-15.6,24.1H-72c-17.2,0-24.2-10.8-15.6-24.1l49.5-77.2
-			C-29.5,396.5-15.7,396.5-7.1,409.8z"/>
-		<path class="stop2Img" d="M-38.1,417.3l-49.5-77.2c-8.5-13.3-1.5-24.1,15.6-24.1h98.8c17.2,0,24.2,10.8,15.6,24.1l-49.5,77.2
-			C-15.7,430.6-29.5,430.6-38.1,417.3z"/>
-		<path class="stop1Img" d="M-81,392l99.4-69.8c17.1-12,31-2.2,31.1,21.9L49.8,483c0,24.1-13.8,34-31,22l-99.7-69.5
-			C-98.1,423.5-98.1,404.1-81,392z"/>
-		<path class="playImg" d="M36.9,434.8l-99.6,69.7c-17.1,12-31,2.2-31-22V343.6c0-24.1,13.9-34,31-22l99.6,69.7
-			C54,403.3,54,422.8,36.9,434.8z"/>
-	</g>
-	<g class="pauseImg">
-		<path d="M50.2,471.1c0,21.2-10.7,38.5-24,38.5c-13.2,0-24-17.2-24-38.5V354.5c0-21.2,10.7-38.5,24-38.5c13.2,0,24,17.2,24,38.5
-			V471.1z"/>
-		<path d="M-45.3,471.1c0,21.2-10.7,38.5-24,38.5c-13.2,0-24-17.2-24-38.5V354.5c0-21.2,10.7-38.5,24-38.5c13.2,0,24,17.2,24,38.5
-			V471.1z"/>
-	</g>
-</svg>
-
-                </div><!--/botonEstado -->
+                <div id="buttonsContainer" class="buttonsContainer">
+                  <div id="button1" class="play botonEstado onlyOne">
+                    <!-- <img src="/src/img/pause-play-button.svg" /> -->
+                  </div><!--/botonEstado -->
+                  <div id="button2" class="pause botonEstado onlyOne">
+                    <!-- <img src="/src/img/pause-play-button.svg" /> -->
+                  </div><!--/botonEstado -->
+                </div>
 
               </div><!--/wrapper-->
             </div><!--/received-->

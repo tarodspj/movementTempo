@@ -176,25 +176,36 @@ body {
   text-align: left;
 }
 
-.botonEstado {
+.buttonsContainer {
   display: block;
+  overflow: hidden;
   position: relative;
-  margin: 0 auto;
-  text-align: center;
-  width: 80%;
+  width: 100%;
   height: 100px;
+}
+
+.botonEstado {
+  display: inline-block;
+  position: relative;
+  text-align: center;
+  float: left;
+  width: 50%;
+  height: 100%;
+  background-position: center center;
+  background-color: transparent;
+  background-repeat: no-repeat;
+  transition: .4s width ease;
+  &.onlyOne {
+    width: 100%;
+  }
   &.play {
-    path {
-      .stop1Img {
-        fill-opacity: 0;
-      }
-      .stop2Img {
-        fill-opacity: 0;
-      }
-      .stop3Img {
-        fill-opacity: 0;
-      }
-    }
+    background-image: url('../img/play-button.svg');
+  }
+  &.stop {
+    background-image: url('../img/stop-button.svg');
+  }
+  &.pause {
+    background-image: url('../img/pause-button.svg');
   }
   //font-size: 40px;
   //line-height: 60px;

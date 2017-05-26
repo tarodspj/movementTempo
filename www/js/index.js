@@ -9389,41 +9389,64 @@ function checkBeforeStart() {
   var $input = $('input');
   $input.blur(); //quitamos el foco de los inputs para que se vea bonito
 }
+function removeOnlyOne(doIt) {
+  var $botonEstado  = $('.botonEstado');
 
-function toggleButtonState(elemento) {
-  if(elemento.hasClass('play')){
-    elemento.removeClass('play');
-    elemento.addClass('stop');
-
-    $('input').attr('readonly', 'readonly');
-    startTrainning();
-    updateTime();
+  if(doIt){
+    $botonEstado.removeClass('onlyOne');
   }
   else {
-    stopCountDown();
-    elemento.addClass('play');
-    elemento.removeClass('stop');
+    $botonEstado.addClass('onlyOne');
   }
+
+}
+
+function toggleButtonState(elemento) {
+  var button1 = $('#button1'),
+      button2 = $('#button2');
+
+  if(elemento.hasClass('play')){
+      button2.removeClass('play');
+      button2.addClass('pause');
+      button1.removeClass('play');
+      button1.addClass('stop');
+      removeOnlyOne(true);
+      startTrainning();
+      updateTime();
+      $('input').attr('readonly', 'readonly');
+  }
+  else if(elemento.hasClass('stop')){
+    stopCountDown();
+    button1.addClass('play');
+    button1.removeClass('stop');
+    button2.removeClass('play');
+    button2.addClass('pause');
+    removeOnlyOne(false);
+  }
+  else if(elemento.hasClass('pause')){
+    pauseCountDown();
+    button2.removeClass('pause');
+    button2.addClass('play');
+    removeOnlyOne(true);
+  }
+
 }
 
 function startTrainning() {
   $wrapper = $('#wrapper');
-  //seriesInicial = parseInt($wrapper.find('.numero_series').val(), 10);
   minutosInicial = parseInt($wrapper.find('.minutos').val(), 10);
   segundosInicial = parseInt($wrapper.find('.segundos').val(), 10);
   minutos = minutosInicial;
   segundos = segundosInicial;
-  //series = seriesInicial;
 }
 
 function restartTrainning() {
   continua = true;
-  //$wrapper.find('.numero_series').val(seriesInicial);
   restartTime();
 }
 
 function trainningEnded() {
-  toggleButtonState($('#botonEstado'));
+  toggleButtonState($('#button1'));
   restartTrainning();
 }
 
@@ -9483,13 +9506,15 @@ function updateTime() {
 
 function stopCountDown() {
   clearTimeout(timer);
-  //startTrainning();
   restartTime();
   $('input').removeAttr('readonly');
 }
+function pauseCountDown() {
+  clearTimeout(timer);
+}
 
 function initializeApp() {
-  $('#botonEstado').on('click', function(){
+  $('.botonEstado').on('click', function(){
     var $this = $(this);
     toggleButtonState($this);
   });
