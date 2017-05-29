@@ -7,6 +7,7 @@
     <author email="r.regueiro.santiago@gmail.com" href="http://www.robertoregueiro.com">
         Roberto Regueiro Esepejota
     </author>
+    <icon src="www/img/logo.png" />
     <content src="index.html" />
     <access origin="*" />
     <allow-intent href="http://*/*" />
